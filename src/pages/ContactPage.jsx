@@ -18,6 +18,8 @@ export function ContactPage() {
   const { contactForm } = siteData;
   const [stepIndex, setStepIndex] = useState(0);
   const [form, setForm] = useState(initialForm);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const step = contactForm.steps[stepIndex];
 
@@ -50,6 +52,61 @@ export function ContactPage() {
     setForm((current) => ({ ...current, [field]: value }));
   }
 
+  function getTrackingData() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const trackingKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "gbraid", "wbraid", "fbclid"];
+
+    return trackingKeys.reduce((tracking, key) => {
+      const value = searchParams.get(key);
+
+      if (value) {
+        tracking[key] = value;
+      }
+
+      return tracking;
+    }, {});
+  }
+
+  function getConsentData() {
+    try {
+      const storedConsent = window.localStorage.getItem("viewpooort_cookie_consent");
+      return storedConsent ? JSON.parse(storedConsent) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  async function submitLead() {
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...form,
+          page: window.location.href,
+          referrer: document.referrer,
+          consent: getConsentData(),
+          tracking: getTrackingData(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Lead submission failed");
+      }
+
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Die Anfrage konnte nicht gesendet werden. Bitte versuche es erneut oder schreibe direkt an hello@viewpooort.com.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   function goNext() {
     if (!canContinue) {
       return;
@@ -60,7 +117,7 @@ export function ContactPage() {
       return;
     }
 
-    setSubmitted(true);
+    submitLead();
   }
 
   return (
@@ -75,9 +132,8 @@ export function ContactPage() {
                   {contactForm.actions.sent}
                 </h2>
                 <p className="type-body text-black/60">
-                  Die technische Übergabe ist vorbereitet. Als nächstes kann
-                  hier ein Mail-, CRM- oder Kalender-Workflow angeschlossen
-                  werden.
+                  Deine Angaben wurden gesendet. Ich melde mich zeitnah bei
+                  dir mit einer Einschätzung zu deinem Projekt.
                 </p>
               </div>
             ) : (
@@ -186,12 +242,17 @@ export function ContactPage() {
                   >
                     {contactForm.actions.back}
                   </button>
-                  <Button disabled={!canContinue} type="submit" variant="solid">
-                    {stepIndex === contactForm.steps.length - 1
-                      ? contactForm.actions.submit
-                      : contactForm.actions.next}
+                  <Button disabled={!canContinue || isSubmitting} type="submit" variant="solid">
+                    {isSubmitting
+                      ? "Wird gesendet ..."
+                      : stepIndex === contactForm.steps.length - 1
+                        ? contactForm.actions.submit
+                        : contactForm.actions.next}
                   </Button>
                 </div>
+                {submitError ? (
+                  <p className="type-body pt-4 text-[#b42318]">{submitError}</p>
+                ) : null}
               </form>
             )}
           </Card>
