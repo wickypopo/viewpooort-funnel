@@ -1,0 +1,396 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --font-display:
+    'Inter Tight', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    font-family: var(--font-sans);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  img,
+  picture,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+    overflow-wrap: break-word;
+  }
+}
+
+@layer components {
+  .glass-button {
+    background: rgba(31, 117, 216, 0.21);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      0 12px 30px rgba(0, 0, 0, 0.12);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .grid-background {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-background {
+    background-color: #081c3c;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      url('/images/figma/background-image.png');
+    background-position:
+      top left,
+      top left,
+      center top;
+    background-repeat:
+      repeat,
+      repeat,
+      no-repeat;
+    background-size:
+      60px 60px,
+      60px 60px,
+      cover;
+  }
+
+  .client-logo-marquee {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+  }
+
+  .client-logo-track {
+    display: flex;
+    width: max-content;
+    animation: client-logo-scroll 32s linear infinite;
+    will-change: transform;
+  }
+
+  .client-logo-group {
+    display: flex;
+    align-items: center;
+    gap: 72px;
+    margin: 0;
+    padding: 0 72px 0 0;
+    list-style: none;
+  }
+
+  .client-logo-item {
+    display: flex;
+    width: 130px;
+    min-height: 48px;
+    flex: 0 0 130px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .client-logo-wordmark {
+    display: block;
+    max-width: 150px;
+    color: rgba(13, 13, 13, 0.4);
+    text-align: center;
+    white-space: normal;
+    opacity: 0.74;
+    filter: grayscale(1) blur(0.15px);
+  }
+
+  .client-logo-wordmark--serif {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 0.88;
+    text-transform: uppercase;
+  }
+
+  .client-logo-wordmark--stacked {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+
+  .client-logo-wordmark--compact {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 0.88;
+    text-transform: lowercase;
+  }
+
+  .client-logo-wordmark--script {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 0.92;
+    text-transform: lowercase;
+  }
+
+  .client-logo-wordmark--boxed {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 0.9;
+    text-transform: lowercase;
+  }
+
+  .client-logo-wordmark--light {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .client-logo-wordmark--wide {
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .client-logo-wordmark--heavy {
+    font-family: var(--font-display);
+    font-size: 1.18rem;
+    font-weight: 800;
+    line-height: 0.82;
+    text-transform: lowercase;
+  }
+
+  .client-logo-wordmark--serif-small {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 0.92;
+    text-transform: capitalize;
+  }
+
+  .client-logo-wordmark--mono {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 0.9;
+    text-transform: lowercase;
+  }
+
+  .type-brand {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .type-serif-heading {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  .h1,
+  .type-hero {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .h2,
+  .type-section-heading {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+
+  .h3,
+  .type-card-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+
+  .h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  .h5 {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  .h6,
+  .type-eyebrow,
+  .type-action {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  .type-body {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  .type-body-strong {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  .type-client-label {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  @media (max-width: 767px) {
+    .type-brand {
+      font-size: 2rem;
+    }
+
+    .type-hero,
+    .h1 {
+      font-size: 3rem;
+    }
+
+    .type-section-heading,
+    .h2 {
+      font-size: 2.5rem;
+    }
+
+    .type-body,
+    .type-body-strong,
+    .type-action,
+    .type-eyebrow,
+    .h6 {
+      font-size: 1rem;
+    }
+
+    .client-logo-group {
+      gap: 48px;
+      padding-right: 48px;
+    }
+
+    .client-logo-item {
+      width: 112px;
+      min-height: 42px;
+      flex-basis: 112px;
+    }
+
+    .client-logo-wordmark--serif {
+      font-size: 1.2rem;
+    }
+
+    .client-logo-wordmark--stacked {
+      font-size: 0.9rem;
+    }
+
+    .client-logo-wordmark--script {
+      font-size: 1.25rem;
+    }
+
+    .client-logo-wordmark--heavy,
+    .client-logo-wordmark--serif-small {
+      font-size: 1.05rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .client-logo-track {
+      animation: none;
+    }
+  }
+}
+
+@keyframes client-logo-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
