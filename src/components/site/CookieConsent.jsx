@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Button } from '@/components/ui'
 import { cn } from '@/lib/cn.js'
+import { initMetaPixel, revokeMetaPixelConsent } from '@/lib/metaPixel.js'
 
 const CONSENT_KEY = 'viewpooort_cookie_consent'
 const CONSENT_VERSION = 1
@@ -76,6 +77,12 @@ function persistConsent(categories) {
 
   if (window.fbq) {
     window.fbq('consent', payload.categories.marketing ? 'grant' : 'revoke')
+  }
+
+  if (payload.categories.marketing) {
+    initMetaPixel()
+  } else {
+    revokeMetaPixelConsent()
   }
 }
 

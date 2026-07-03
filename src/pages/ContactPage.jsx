@@ -4,6 +4,7 @@ import { SectionBand } from "@/components/site";
 import { Button, Card, Container } from "@/components/ui";
 import { siteData } from "@/data.js";
 import { cn } from "@/lib/cn.js";
+import { trackLeadEvent } from "@/lib/metaPixel.js";
 
 const initialForm = {
   problems: [],
@@ -164,9 +165,15 @@ export function ContactPage() {
 
       const result = await response.json().catch(() => null);
 
-      if (!response.ok) {
+      if (!response.ok || result?.success === false) {
         throw new Error(result?.message || "Web3Forms konnte die Anfrage nicht verarbeiten.");
       }
+
+      trackLeadEvent({
+        content_name: "Project inquiry",
+        currency: "EUR",
+        value: 1,
+      });
 
       setSubmitted(true);
     } catch (error) {
