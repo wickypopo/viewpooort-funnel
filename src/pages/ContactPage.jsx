@@ -14,6 +14,33 @@ const initialForm = {
   website: "",
 };
 
+const web3FormsEndpoint = "https://api.web3forms.com/submit";
+
+function formatConsent(consent) {
+  if (!consent?.categories) {
+    return "Keine Consent-Daten vorhanden";
+  }
+
+  return [
+    `Notwendig: ${consent.categories.necessary ? "ja" : "nein"}`,
+    `Analytics: ${consent.categories.analytics ? "ja" : "nein"}`,
+    `Marketing: ${consent.categories.marketing ? "ja" : "nein"}`,
+    consent.savedAt ? `Gespeichert am: ${consent.savedAt}` : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+function formatTracking(tracking) {
+  const entries = Object.entries(tracking);
+
+  if (entries.length === 0) {
+    return "Keine Tracking-Parameter vorhanden";
+  }
+
+  return entries.map(([key, value]) => `${key}: ${value}`).join("\n");
+}
+
 export function ContactPage() {
   const { contactForm } = siteData;
   const [stepIndex, setStepIndex] = useState(0);
@@ -81,23 +108,64 @@ export function ContactPage() {
     setSubmitError("");
 
     try {
-      const response = await fetch("/api/leads", {
+      const accessKey = import.meta.env.VITE_FORM_ACCESS_KEY;
+      const consent = getConsentData();
+      const tracking = getTrackingData();
+      const submittedAt = new Date().toISOString();
+
+      if (!accessKey) {
+        throw new Error("VITE_FORM_ACCESS_KEY fehlt.");
+      }
+
+      const message = [
+        `Name: ${form.name}`,
+        `E-Mail: ${form.email}`,
+        `Telefon: ${form.phone}`,
+        `Website: ${form.website || "Nicht angegeben"}`,
+        `Budget: ${form.budget || "Nicht angegeben"}`,
+        "",
+        "Probleme:",
+        form.problems.length > 0
+          ? form.problems.map((problem) => `- ${problem}`).join("\n")
+          : "Nicht angegeben",
+        "",
+        "Consent:",
+        formatConsent(consent),
+        "",
+        "Tracking:",
+        formatTracking(tracking),
+        "",
+        `Seite: ${window.location.href}`,
+        `Referrer: ${document.referrer || "Nicht angegeben"}`,
+        `Gesendet am: ${submittedAt}`,
+      ].join("\n");
+
+      const body = new FormData();
+      body.append("access_key", accessKey);
+      body.append("subject", "Neue Projektanfrage über Viewpooort");
+      body.append("from_name", form.name);
+      body.append("name", form.name);
+      body.append("email", form.email);
+      body.append("phone", form.phone);
+      body.append("website", form.website || "Nicht angegeben");
+      body.append("budget", form.budget || "Nicht angegeben");
+      body.append("problems", form.problems.join(", ") || "Nicht angegeben");
+      body.append("page", window.location.href);
+      body.append("referrer", document.referrer || "Nicht angegeben");
+      body.append("submitted_at", submittedAt);
+      body.append("consent", formatConsent(consent));
+      body.append("tracking", formatTracking(tracking));
+      body.append("message", message);
+
+      const response = await fetch(web3FormsEndpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...form,
-          page: window.location.href,
-          referrer: document.referrer,
-          consent: getConsentData(),
-          tracking: getTrackingData(),
-        }),
+        body,
       });
 
+      const result = await response.json().catch(() => null);
+
       if (!response.ok) {
-        const result = await response.json().catch(() => null);
-        throw new Error(result?.error || "Lead submission failed");
+        throw new Error(result?.message || "Web3Forms konnte die Anfrage nicht verarbeiten.");
       }
 
       setSubmitted(true);
