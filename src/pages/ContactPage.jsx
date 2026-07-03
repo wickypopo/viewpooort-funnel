@@ -96,12 +96,13 @@ export function ContactPage() {
       });
 
       if (!response.ok) {
-        throw new Error("Lead submission failed");
+        const result = await response.json().catch(() => null);
+        throw new Error(result?.error || "Lead submission failed");
       }
 
       setSubmitted(true);
-    } catch {
-      setSubmitError("Die Anfrage konnte nicht gesendet werden. Bitte versuche es erneut oder schreibe direkt an hello@viewpooort.com.");
+    } catch (error) {
+      setSubmitError(`Die Anfrage konnte nicht gesendet werden. ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
