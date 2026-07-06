@@ -81,8 +81,11 @@ export const siteData = {
     primaryAction: "Jetzt unverbindlich Anfragen",
   },
   hero: {
-    headline: ["Schnauze voll von", "Ki-Webagenturen?"],
-    copy: "Wir erstellen Websites mit realem Know-How dahinter. 10+ Jahre Webdesign und programmier-Erfahrung, die deine Kunden überzeugen und dir auch wirklich was bringt.",
+    headline: [
+      "Wir erstellen Websites die nicht nur gut aussehen,",
+      "sondern verkaufen.",
+    ],
+    copy: "Bereit, deine Geschichte zu schreiben?",
     action: "Jetzt unverbindlich Anfragen",
     mockup: {
       brand: "NIVARI",
