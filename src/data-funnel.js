@@ -41,7 +41,7 @@ export const funnelData = {
     benefitsLabel: "Deine Vorteile im Überblick",
     benefits: [
       {
-        title: "Professionelle Website in 72 Stunden (Wert 997 €)",
+        title: "Professionelle Website in 72 Stunden (Wert 1.637 €)",
         description:
           'Von "Ich habe keine Website" zu "Meine Website ist online" - in 72 Stunden.',
       },
@@ -78,7 +78,7 @@ export const funnelData = {
   },
   features: {
     eyebrow: "viewpooort zum Mitnehmen",
-    headline: "Ihre Premium viewpooort Website",
+    headline: "Deine Premium Website",
     priceLine: "499€ Setup + Support ab 7,90€/Mo.",
     included: [
       "Premium Website-Design",

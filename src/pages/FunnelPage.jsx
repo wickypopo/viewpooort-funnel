@@ -14,6 +14,7 @@ import {
 import { CookieConsent } from "@/components/site";
 import { funnelData } from "@/data-funnel.js";
 import { siteData } from "@/data.js";
+import { trackLeadEvent } from "@/lib/metaPixel.js";
 
 const img = {
   hero: "/images/funnel/hero-bg.jpg",
@@ -60,6 +61,15 @@ const countdownDurationMs = ((10 * 60 + 34) * 60 + 29) * 1000;
 const countdownStorageKey = "viewpooort-funnel-deadline";
 const oldOfferValue = "1.637 Euro";
 const savingsValue = "1.138€";
+
+function trackFunnelLeadClick() {
+  trackLeadEvent({
+    content_name: "Funnel CTA",
+    content_category: "angebot",
+    value: 499,
+    currency: "EUR",
+  });
+}
 
 function createCountdownDeadline() {
   const nextDeadline = Date.now() + countdownDurationMs;
@@ -118,6 +128,7 @@ function CtaButton({
   return (
     <a
       href={href}
+      onClick={trackFunnelLeadClick}
       className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl bg-[#1f75d8] px-5 text-center font-['Plus_Jakarta_Sans'] font-bold text-white shadow-lg shadow-[#1f75d8]/25 transition hover:bg-[#1767c3] ${className}`}
     >
       {children}
@@ -332,8 +343,7 @@ function OfferCard() {
           </p>
         </div>
         <p className="mt-5 rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-center text-xs text-white/70 md:text-sm">
-          → Du sparst <strong className="text-white">{savingsValue}</strong> mit
-          Code: <strong className="text-[#5eb2ff]">VIEWDEAL</strong>
+          → Du sparst <strong className="text-white">{savingsValue}</strong>
         </p>
         <p className="mt-4 inline-flex rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.05em] text-white/70 md:text-xs">
           Deine Vorteile im Überblick
@@ -425,7 +435,11 @@ function ReferencesSection() {
 
       <div className="reference-gallery mt-10 md:mt-14">
         <ReferenceMarquee cards={topRow} direction="left" />
-        <ReferenceMarquee cards={bottomRow} direction="right" className="-mt-2 md:-mt-4" />
+        <ReferenceMarquee
+          cards={bottomRow}
+          direction="right"
+          className="-mt-2 md:-mt-4"
+        />
       </div>
 
       <div className="mx-auto max-w-[1216px] px-4 md:px-8">
@@ -470,9 +484,15 @@ function ReferenceCard({ card }) {
         </span>
       </div>
       <div className="relative overflow-hidden">
-        <img src={card.src} alt={`${card.brand} Website`} className="reference-card-image" />
+        <img
+          src={card.src}
+          alt={`${card.brand} Website`}
+          className="reference-card-image"
+        />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-4 text-white">
-          <h3 className="font-['Sora'] text-lg font-extrabold leading-tight">{card.brand}</h3>
+          <h3 className="font-['Sora'] text-lg font-extrabold leading-tight">
+            {card.brand}
+          </h3>
           <p className="mt-1 font-['Plus_Jakarta_Sans'] text-xs text-white/75">
             Viewpooort Referenz
           </p>
@@ -533,14 +553,12 @@ function FeaturesSection() {
     <section id="leistungen" className="bg-[#f5f5f7] py-12 md:py-20">
       <div className="mx-auto max-w-[1216px] px-4 md:px-8">
         <SectionTitle
-          eyebrow="viewpooort zum Mitnehmen"
           title={
             <>
               Ihre Premium{" "}
               <span className="text-[#1f75d8]">viewpooort Website</span>
             </>
           }
-          text="Mit 73 Features online - einfach bestellen und loslegen."
           dark={false}
         />
         <p className="mt-4 text-center font-['Plus_Jakarta_Sans'] text-xs text-[#6a7282]">
@@ -583,7 +601,7 @@ function FeatureCarousel({ cards }) {
           type="button"
           aria-label="Vorherige Leistung"
           onClick={showPrevious}
-          className="absolute left-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-[#07152f]/70 text-white shadow-lg backdrop-blur"
+          className="absolute left-3 bottom-4 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-[#07152f]/70 text-white shadow-lg backdrop-blur"
         >
           <ArrowLeft className="size-5" />
         </button>
@@ -591,7 +609,7 @@ function FeatureCarousel({ cards }) {
           type="button"
           aria-label="Nächste Leistung"
           onClick={showNext}
-          className="absolute right-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-[#07152f]/70 text-white shadow-lg backdrop-blur"
+          className="absolute right-3 bottom-4 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-[#07152f]/70 text-white shadow-lg backdrop-blur"
         >
           <ArrowRight className="size-5" />
         </button>
@@ -850,6 +868,7 @@ export function FunnelPage() {
       <FunnelFooter />
       <a
         href={ctaHref}
+        onClick={trackFunnelLeadClick}
         className="fixed bottom-5 right-5 z-40 grid size-14 place-items-center rounded-full bg-[#25d366] text-white shadow-xl shadow-green-500/30 transition hover:scale-105"
         aria-label="Kontakt aufnehmen"
       >
