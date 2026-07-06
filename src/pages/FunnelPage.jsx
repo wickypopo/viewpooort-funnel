@@ -21,12 +21,12 @@ const img = {
   team: "/images/funnel/team.jpg",
   cta: "/images/funnel/cta-bg.jpg",
   refs: [
-    "/images/funnel/reference-1.jpg",
-    "/images/funnel/reference-2.jpg",
-    "/images/funnel/reference-3.jpg",
-    "/images/funnel/reference-4.jpg",
-    "/images/funnel/reference-5.jpg",
-    "/images/funnel/reference-6.jpg",
+    "/images/figma/project-ads-economy.jpg",
+    "/images/figma/hero-watch-screen.jpg",
+    "/images/figma/em.jpg",
+    "/images/figma/ym.jpg",
+    "/images/figma/am.jpg",
+    "/images/figma/am.jpg",
   ],
   features: [
     "/images/funnel/feature-premium.jpg",
@@ -57,7 +57,7 @@ const referenceCards = img.refs.map((src, index) => {
     url: `${brand.toLowerCase().replaceAll(" ", "-")}.viewpooort.com`,
   };
 });
-const countdownDurationMs = ((10 * 60 + 34) * 60 + 29) * 1000;
+const countdownDurationMs = ((7 * 60 + 34) * 60 + 29) * 1000;
 const countdownStorageKey = "viewpooort-funnel-deadline";
 const oldOfferValue = "1.637 Euro";
 const savingsValue = "1.138€";
