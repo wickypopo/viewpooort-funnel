@@ -310,12 +310,12 @@ function TrustCard({ title }) {
 function GoogleCard() {
   return (
     <div className="flex  h-[49px] w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 font-['Plus_Jakarta_Sans'] backdrop-blur md:w-auto">
-      <div className="flex flex-col gap-1">
-        <span className="text-xs text-[#fdc700]">★★★★★</span>
+      <div className="flex gap-1">
         <img
           src="/images/Google_Favicon.webp"
           className="size-4 fill-[#fdc700] text-[#fdc700]"
         />
+        <span className="text-xs text-[#fdc700]">★★★★★</span>
       </div>
 
       <div className="leading-none">
