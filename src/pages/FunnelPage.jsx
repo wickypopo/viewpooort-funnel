@@ -26,7 +26,7 @@ const img = {
     "/images/figma/em.jpg",
     "/images/figma/ym.jpg",
     "/images/figma/am.jpg",
-    "/images/figma/am.jpg",
+    "/images/figma/sg.jpg",
   ],
   features: [
     "/images/funnel/feature-premium.jpg",
@@ -489,14 +489,6 @@ function ReferenceCard({ card }) {
           alt={`${card.brand} Website`}
           className="reference-card-image"
         />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-4 text-white">
-          <h3 className="font-['Sora'] text-lg font-extrabold leading-tight">
-            {card.brand}
-          </h3>
-          <p className="mt-1 font-['Plus_Jakarta_Sans'] text-xs text-white/75">
-            Viewpooort Referenz
-          </p>
-        </div>
       </div>
     </article>
   );
