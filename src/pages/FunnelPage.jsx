@@ -292,19 +292,15 @@ function HeroSection() {
 function TrustCard({ title }) {
   const [first, second, year] = title.split(" ");
   return (
-    <div className="h-[55.5px] w-[198px] rounded-xl border border-white/10 bg-white/5 p-3 font-['Plus_Jakarta_Sans'] backdrop-blur md:w-auto">
-      <div className="grid grid-cols-[90px_1fr] items-center gap-2">
+    <div className="h-[55.5px] w-full rounded-xl border border-white/10 bg-white/5 p-3 font-['Plus_Jakarta_Sans'] backdrop-blur md:w-auto">
+      <div className="flex items-center justify-center gap-2">
         <p className="text-[9px] leading-[11px] text-white/40">
           Kundenmeinungen
           <br />
           der letzten 12 Monate
         </p>
         <p className="text-[10px] font-bold leading-[12.5px] text-white">
-          {first}
-          <br />
-          {second}
-          <br />
-          {year}
+          {first} {second} {year}
         </p>
       </div>
     </div>
@@ -313,9 +309,15 @@ function TrustCard({ title }) {
 
 function GoogleCard() {
   return (
-    <div className="flex h-[49px] w-[220px] items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 font-['Plus_Jakarta_Sans'] backdrop-blur md:w-auto">
-      <Star className="size-4 fill-[#fdc700] text-[#fdc700]" />
-      <span className="text-xs text-[#fdc700]">★★★★★</span>
+    <div className="flex  h-[49px] w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 font-['Plus_Jakarta_Sans'] backdrop-blur md:w-auto">
+      <div className="flex flex-col gap-1">
+        <span className="text-xs text-[#fdc700]">★★★★★</span>
+        <img
+          src="/images/Google_Favicon.webp"
+          className="size-4 fill-[#fdc700] text-[#fdc700]"
+        />
+      </div>
+
       <div className="leading-none">
         <p className="text-xs font-bold text-white">5.0</p>
         <p className="mt-1 text-[10px] text-white/60">Google Bewertungen</p>
