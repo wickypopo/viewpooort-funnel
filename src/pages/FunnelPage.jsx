@@ -246,7 +246,7 @@ function HeroSection() {
       <div className="absolute bottom-20 right-10 size-96 rounded-full bg-[#1f75d8]/14 blur-[60px]" />
 
       <div className="relative mx-auto max-w-[1216px] px-4 pb-16 pt-8 md:px-8 md:pb-20 md:pt-12">
-        <div className="mx-auto flex min-h-[50px] w-full max-w-[358px] items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 font-['Plus_Jakarta_Sans'] text-xs font-medium uppercase leading-4 tracking-[0.05em] text-white/80 backdrop-blur md:min-h-[38px] md:max-w-max md:text-sm">
+        <div className="mx-auto flex min-h-[50px] w-full max-w-[358px] items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 font-['Plus_Jakarta_Sans'] text-[11px] font-medium leading-4 tracking-[0.05em] text-white/80 backdrop-blur md:min-h-[38px] md:max-w-max md:text-sm">
           <span className="size-2 shrink-0 rounded-full bg-[#1f75d8]" />
           <span className="min-w-0 flex-1 text-wrap">
             Warum tausende zahlen wenn es auch einfacher geht
