@@ -375,7 +375,7 @@ function OfferCard() {
           Ja, ich will meine Website
         </CtaButton>
         <p className="mt-2 text-center text-xs text-white/50">
-          (Für nur {funnelData.offer.setupPrice})
+          Nur noch 2/5 Plätze diese Woche verfügbar
         </p>
       </div>
     </aside>
