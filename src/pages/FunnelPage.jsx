@@ -108,7 +108,7 @@ function getCountdownParts(deadline) {
 function BrandMark() {
   return (
     <a href="#hero" className="flex h-8 items-center">
-      <span className="font-display text-2xl font-medium tracking-[-0.01em] text-[#101828]">
+      <span className="font-['Instrument_Serif'] text-3xl font-medium tracking-[-0.01em] text-[#101828]">
         Viewpooort
       </span>
     </a>
@@ -228,7 +228,14 @@ function HeroSection() {
             <span className="block text-white">Deine 499€ Website</span>
           </h1>
           <p className="mx-auto mt-5 max-w-[760px] font-sans text-sm leading-4 text-white/60 md:mt-6 md:text-base md:leading-6">
-            Die meisten Agenturen verlangen <strong className="font-bold text-white/85">TAUSENDE EURO</strong> und brauchen Wochen für eine einfache Website. Bei uns bekommst du Agentur-Qualität zum Festpreis. Genau wie <strong className="font-bold text-white/85">500+ zufriedene Kunden</strong> vor dir.
+            Die meisten Agenturen verlangen{" "}
+            <strong className="font-bold text-white/85">TAUSENDE EURO</strong>{" "}
+            und brauchen Wochen für eine einfache Website. Bei uns bekommst du
+            Agentur-Qualität zum Festpreis. Genau wie{" "}
+            <strong className="font-bold text-white/85">
+              500+ zufriedene Kunden
+            </strong>{" "}
+            vor dir.
           </p>
         </div>
         <OfferBrowserMockup />
@@ -288,11 +295,17 @@ function GoogleCard() {
   return (
     <div className="min-w-0 font-sans text-black">
       <div className="flex items-center gap-1">
-        <img src="/images/Google_Favicon.webp" alt="Google" className="size-4" />
+        <img
+          src="/images/Google_Favicon.webp"
+          alt="Google"
+          className="size-4"
+        />
         <p className="font-display text-xs font-bold leading-none">5.0</p>
         <span className="text-[10px] leading-none text-[#fdc700]">★★★★★</span>
       </div>
-      <p className="mt-1 text-[10px] leading-[12px] text-black/60">Google Bewertungen</p>
+      <p className="mt-1 text-[10px] leading-[12px] text-black/60">
+        Google Bewertungen
+      </p>
     </div>
   );
 }
@@ -308,15 +321,16 @@ function OfferCard() {
 
         <div className="w-full text-center">
           <div className="flex items-end justify-center gap-2 whitespace-nowrap">
-            <p className="font-display text-[40px] font-medium leading-[36px] text-white md:text-6xl md:leading-none">
+            <p className="font-display text-[52px] font-medium leading-[46px] text-white md:text-6xl md:leading-none">
               {funnelData.offer.setupPrice}
             </p>
-            <p className="pb-0.5 text-base font-normal leading-6 text-white/60 line-through md:text-lg">
+            <p className="pb-1 text-lg font-normal leading-6 text-white/60 line-through md:text-lg">
               {oldOfferValue}
             </p>
           </div>
-          <p className="mt-3 text-center text-xs text-white/70">
-            → Du sparst <strong className="font-bold text-white">{savingsValue}</strong>
+          <p className="mt-4 text-center text-sm text-white/70">
+            → Du sparst{" "}
+            <strong className="font-bold text-white">{savingsValue}</strong>
           </p>
         </div>
 
@@ -331,10 +345,10 @@ function OfferCard() {
                 <Check className="size-3 text-white" />
               </span>
               <span>
-                <span className="block text-xs font-bold leading-4 text-white md:text-sm">
+                <span className="block text-[14px] font-bold leading-[18px] text-white md:text-sm">
                   {item.title.replace(/\s*\([^)]*\)/, "")}
                 </span>
-                <span className="mt-1 block text-[10px] leading-[15px] text-white/60 md:text-xs md:leading-5">
+                <span className="mt-1.5 block text-xs leading-[17px] text-white/60 md:text-xs md:leading-5">
                   {item.description}
                 </span>
               </span>
