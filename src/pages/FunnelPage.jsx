@@ -43,8 +43,7 @@ const navItems = [
   ["Kontakt", "#kontakt"],
 ];
 
-const ctaHref =
-  "https://wa.me/4915906498022?text=Hi%2C+ich+m%C3%B6chte+meinen+kostenlosen+Website-Entwurf.+Meine+Branche+ist%3A+___";
+const ctaHref = "/contact";
 const featureIcons = [Sparkles, Zap, Globe2, ShieldCheck];
 const referenceCards = img.refs.map((src, index) => {
   const brand =
@@ -508,7 +507,7 @@ function ProcessSection() {
         </div>
         <div className="mt-10 text-center">
           <CtaButton className="h-10 rounded-xl px-5 text-xs" withArrow>
-            Jetzt starten - kostenlos
+            Jetzt unverbindlich anfragen
           </CtaButton>
         </div>
       </div>
@@ -655,7 +654,7 @@ function MiniPriceCard() {
         ))}
       </div>
       <CtaButton className="mt-5 h-11 w-full rounded-xl text-xs" withArrow>
-        Entwurf per WhatsApp erhalten
+        Jetzt unverbindlich anfragen
       </CtaButton>
     </div>
   );
@@ -688,10 +687,10 @@ function FaqSection() {
         <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.03] p-8 text-center">
           <h3 className="font-display text-xl font-bold">Noch Fragen?</h3>
           <p className="mt-3 font-sans text-sm text-white/50">
-            Schreib uns einfach per WhatsApp und wir helfen dir weiter
+            Schreib uns einfach über das Kontaktformular und wir helfen dir weiter
           </p>
           <CtaButton className="mt-6 min-h-[56px] w-full rounded-xl text-base md:w-auto">
-            Jetzt per WhatsApp fragen
+            Jetzt unverbindlich anfragen
           </CtaButton>
         </div>
       </div>
@@ -722,7 +721,7 @@ function FinalCtaSection() {
           className="mt-8 min-h-[76px] w-full rounded-2xl text-lg md:min-h-[60px] md:w-auto"
           withArrow
         >
-          Kostenlosen Entwurf anfordern
+          Jetzt unverbindlich anfragen
         </CtaButton>
         <p className="mt-5 font-sans text-xs text-white/30">
           Einmalig {funnelData.offer.setupPrice} · Kein Abo ·

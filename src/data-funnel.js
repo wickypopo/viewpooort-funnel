@@ -7,7 +7,7 @@ export const funnelData = {
   meta: {
     title: "viewpooort - Professionelle Website in 72 Stunden | Ab 499€",
     description:
-      "Deine professionelle Website in 72 Stunden. Festpreis 499€. Erst den Entwurf sehen, dann bezahlen. Kein Risiko, kein Call - nur WhatsApp.",
+      "Deine professionelle Website in 72 Stunden. Festpreis 499€. Erst den Entwurf sehen, dann bezahlen. Kein Risiko - einfach unverbindlich anfragen.",
     canonicalUrl: "https://viewpooort.com",
   },
   offer: {
@@ -46,9 +46,9 @@ export const funnelData = {
           'Von "Ich habe keine Website" zu "Meine Website ist online" - in 72 Stunden.',
       },
       {
-        title: "Schnelle Umsetzung & WhatsApp-Support",
+        title: "Schnelle Umsetzung & persönlicher Support",
         description:
-          "Änderungswünsche werden günstig & schnell umgesetzt. Direkter Draht per WhatsApp.",
+          "Änderungswünsche werden günstig & schnell umgesetzt. Direkter Draht über das Kontaktformular.",
       },
       {
         title: "Bonus 1: SEO & Google Optimierung",
@@ -88,7 +88,7 @@ export const funnelData = {
       "SEO-optimiert",
       "Kontaktformular",
     ],
-    cta: "Entwurf per WhatsApp erhalten",
+    cta: "Jetzt unverbindlich anfragen",
     cards: [
       {
         tag: "INNOVATION",
@@ -131,12 +131,12 @@ export const funnelData = {
   process: {
     eyebrow: "So einfach geht's",
     headlineParts: ["In 3 Schritten zu deiner", "Website"],
-    text: "Kein komplizierter Prozess. Kein Call nötig. Alles per WhatsApp.",
+    text: "Kein komplizierter Prozess. Kein Call nötig. Alles über das Kontaktformular.",
     steps: [
       {
-        title: "WhatsApp schreiben",
+        title: "Anfrage senden",
         description:
-          "Schick uns eine kurze Nachricht per WhatsApp. Beantworte 3 einfache Fragen zu deinem Business - fertig.",
+          "Schick uns eine kurze Anfrage über das Kontaktformular. Beantworte 3 einfache Fragen zu deinem Business - fertig.",
       },
       {
         title: "Kostenlosen Entwurf erhalten",
@@ -149,7 +149,7 @@ export const funnelData = {
           "Nach deiner Freigabe ist deine professionelle Website innerhalb von 72 Stunden online. Garantiert.",
       },
     ],
-    cta: "Jetzt starten - kostenlos",
+    cta: "Jetzt unverbindlich anfragen",
   },
   sustainability: {
     eyebrow: "Nachhaltigkeit",
@@ -176,12 +176,12 @@ export const funnelData = {
       {
         question: "Was ist alles im Preis enthalten?",
         answer:
-          "Du bekommst eine professionelle 1-seitige Website, mobile Optimierung, WhatsApp-Button, Kontaktformular, SEO-Grundoptimierung und ein modernes, individuelles Design.",
+          "Du bekommst eine professionelle 1-seitige Website, mobile Optimierung, Kontaktformular, SEO-Grundoptimierung und ein modernes, individuelles Design.",
       },
       {
         question: "Wie funktioniert der kostenlose Entwurf?",
         answer:
-          "Klicke auf den WhatsApp-Button, beantworte 3 kurze Fragen zu deinem Business und erhalte innerhalb von 24 Stunden einen kostenlosen Entwurf. Erst wenn dir der Entwurf gefällt, zahlst du.",
+          "Klicke auf den Anfrage-Button, beantworte 3 kurze Fragen zu deinem Business und erhalte innerhalb von 24 Stunden einen kostenlosen Entwurf. Erst wenn dir der Entwurf gefällt, zahlst du.",
       },
       {
         question: "Wann geht meine Website online?",
@@ -201,14 +201,14 @@ export const funnelData = {
     ],
     contact: {
       headline: "Noch Fragen?",
-      text: "Schreib uns einfach per WhatsApp und wir helfen dir weiter",
-      cta: "Jetzt per WhatsApp fragen",
+      text: "Schreib uns einfach über das Kontaktformular und wir helfen dir weiter",
+      cta: "Jetzt unverbindlich anfragen",
     },
   },
   ctaSection: {
     headlineParts: ["Bereit für deine", "neue Website?"],
-    text: "Starte jetzt mit deinem kostenlosen Entwurf. Kein Risiko, kein Call - nur WhatsApp. Erst wenn dir der Entwurf gefällt, zahlst du.",
-    cta: "Kostenlosen Entwurf anfordern",
+    text: "Starte jetzt mit deinem kostenlosen Entwurf. Kein Risiko - einfach unverbindlich anfragen. Erst wenn dir der Entwurf gefällt, zahlst du.",
+    cta: "Jetzt unverbindlich anfragen",
     subline: "Einmalig 499€ · Kein Abo · Zufriedenheitsgarantie",
   },
   footer: {
@@ -232,6 +232,6 @@ export const funnelData = {
   contact: {
     email: "info@viewpooort.com",
     phone: "+49 15562 710839",
-    whatsappCta: "Jetzt per WhatsApp fragen",
+    whatsappCta: "Jetzt unverbindlich anfragen",
   },
 };
