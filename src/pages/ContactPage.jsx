@@ -42,12 +42,20 @@ function formatTracking(tracking) {
   return entries.map(([key, value]) => `${key}: ${value}`).join("\n");
 }
 
+function buildMailtoHref(payload) {
+  const subject = payload?.subject || "Neue Projektanfrage über Viewpooort";
+  const body = payload?.message || "";
+
+  return `mailto:${siteData.brand.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 export function ContactPage() {
   const { contactForm } = siteData;
   const [stepIndex, setStepIndex] = useState(0);
   const [form, setForm] = useState(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [fallbackMailto, setFallbackMailto] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const step = contactForm.steps[stepIndex];
 
@@ -107,6 +115,7 @@ export function ContactPage() {
   async function submitLead() {
     setIsSubmitting(true);
     setSubmitError("");
+    setFallbackMailto("");
 
     try {
       const accessKey = import.meta.env.VITE_FORM_ACCESS_KEY;
@@ -141,31 +150,41 @@ export function ContactPage() {
         `Gesendet am: ${submittedAt}`,
       ].join("\n");
 
-      const body = new FormData();
-      body.append("access_key", accessKey);
-      body.append("subject", "Neue Projektanfrage über Viewpooort");
-      body.append("from_name", form.name);
-      body.append("name", form.name);
-      body.append("email", form.email);
-      body.append("phone", form.phone);
-      body.append("website", form.website || "Nicht angegeben");
-      body.append("budget", form.budget || "Nicht angegeben");
-      body.append("problems", form.problems.join(", ") || "Nicht angegeben");
-      body.append("page", window.location.href);
-      body.append("referrer", document.referrer || "Nicht angegeben");
-      body.append("submitted_at", submittedAt);
-      body.append("consent", formatConsent(consent));
-      body.append("tracking", formatTracking(tracking));
-      body.append("message", message);
+      const body = {
+        access_key: accessKey,
+        subject: "Neue Projektanfrage über Viewpooort",
+        from_name: form.name,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        website: form.website || "Nicht angegeben",
+        budget: form.budget || "Nicht angegeben",
+        problems: form.problems.join(", ") || "Nicht angegeben",
+        page: window.location.href,
+        referrer: document.referrer || "Nicht angegeben",
+        submitted_at: submittedAt,
+        consent: formatConsent(consent),
+        tracking: formatTracking(tracking),
+        message,
+      };
+      const mailtoHref = buildMailtoHref(body);
 
       const response = await fetch(web3FormsEndpoint, {
         method: "POST",
-        body,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(body),
+      }).catch(() => {
+        setFallbackMailto(mailtoHref);
+        throw new Error("Der Formularanbieter blockiert den Versand aktuell. Bitte nutze den E-Mail-Link unten.");
       });
 
       const result = await response.json().catch(() => null);
 
       if (!response.ok || result?.success === false) {
+        setFallbackMailto(mailtoHref);
         throw new Error(result?.message || "Web3Forms konnte die Anfrage nicht verarbeiten.");
       }
 
@@ -327,7 +346,14 @@ export function ContactPage() {
                   </Button>
                 </div>
                 {submitError ? (
-                  <p className="type-body pt-4 text-[#b42318]">{submitError}</p>
+                  <div className="type-body grid gap-2 pt-4 text-[#b42318]">
+                    <p>{submitError}</p>
+                    {fallbackMailto ? (
+                      <a className="font-semibold underline underline-offset-2" href={fallbackMailto}>
+                        Anfrage direkt per E-Mail senden
+                      </a>
+                    ) : null}
+                  </div>
                 ) : null}
               </form>
             )}
