@@ -142,7 +142,7 @@ export const siteData = {
     action: "Jetzt unverbindlich Anfragen",
     person: {
       name: "Felix Meise",
-      role: "Geschäftsführer viewpooort",
+      role: "Gründer Viewpooort",
     },
     copy: "Ich helfe B2B-Unternehmen und Dienstleistern dabei, Websites zu entwickeln, die nicht nur gut aussehen, sondern gezielt Vertrauen aufbauen und messbar Anfragen generieren. Durch meine Erfahrung weiß ich, worauf es wirklich ankommt. Klarer Prozess, persönliche Betreuung und ein Design, das überzeugt. Einfach in der Bedienung, durchdacht in der Struktur. Und vor allem: gemacht für Resultate.",
   },
