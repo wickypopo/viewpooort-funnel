@@ -7,10 +7,7 @@ export function SiteHeader() {
       className="flex h-[62px] items-center justify-between px-[50px] max-md:px-6"
       data-layout="site-header"
     >
-      <a
-        className="type-serif text-4xl text-black no-underline instrument"
-        href="/"
-      >
+      <a className="type-serif text-4xl text-black no-underline" href="/">
         {siteData.brand.name}
       </a>
       <div className="hidden sm:block">
