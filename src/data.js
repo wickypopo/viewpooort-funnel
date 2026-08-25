@@ -1,6 +1,6 @@
 export const siteData = {
   brand: {
-    name: "Viewpooort",
+    name: "viewpooort",
     email: "hello@viewpooort.com",
     location: "Kiel / Deutschland",
   },
